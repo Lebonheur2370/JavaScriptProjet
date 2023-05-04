@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Ma calculette</title>
+    <style>
+      #menu {
+        display: none;
+      }
+     
+      #bienvenue {
+        display: block;
+        text-align: center;
+        font-size: 24px;
+        margin-top: 50px;
+      }
+
+      #confirmation-quitter{
+        display: none;
+        text-align: center;
+      }
+
+      #au-revoir{
+        display: none;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="bienvenue" style="color:blue">
+      <h1>Bienvenue sur notre application de mini-calculatrice !</h1>
+    </div>
+    <div id="menu">
+      <h1>Menu de la calculatrice </h1>
+      <ol id="ol">
+        <li><a href="#" onclick="direBonjour()">Dire Bonjour</a></li>
+        <li><a href="#" onclick="faireAddition()">Faire l'addition de deux nombres</a></li>
+        <li><a href="#" onclick="faireSoustraction()">Faire la soustraction de deux nombres</a></li>
+        <li><a href="#" onclick="afficherTableMultiplication()">Affiche moi la table de multiplication</a></li>
+        <li><a href="#" onclick="quitter()">Quitter</a></li>
+      </ol>
+      <div id="resultat"></div>
+    </div>
+    <div id="confirmation-quitter">
+        <p>Voulez-vous vraiment quitter ?</p>
+        <button onclick="fermerFenetre()">Oui</button>
+      <button onclick="annulerQuitter()">Non</button>
+    </div>
+    <div id="au-revoir" style="color:rgb(19, 241, 19)">
+      <h3>Merci d'avoir utilisé notre application</h3>
+      <h1>Au revoir !</h1>
+        
+    </div>  
+    
+    <script defer>
+
+      (function(){
+        document.querySelector('#menu').style.display='none'
+        setTimeout(function(){
+          document.getElementsByTagName('h1')[0].style.color='green'
+        },2000)
+        setTimeout(function(){
+          document.getElementsByTagName('h1')[0].style.color='red'
+        },4000)
+        setTimeout(function(){
+          document.getElementsByTagName('h1')[0].style.display='none'
+          document.querySelector('#menu').style.display='block'
+        },6000)
+      })()
+      function direBonjour() {
+        let nom = prompt("Quel est votre nom ?");
+        let message = "Bonjour " + nom + "!";
+        document.getElementById("resultat").innerHTML = message;
+      }
+
+      function faireAddition() {
+        let a = parseFloat(prompt("Entrez le premier nombre :"));
+        let b = parseFloat(prompt("Entrez le deuxième nombre :"));
+        let resultat = a + b;
+        document.getElementById("resultat").innerHTML = "Le résultat de l'addition : " + a + " + " + b + " = " + resultat;
+      }
+
+      function faireSoustraction() {
+        let a = parseFloat(prompt("Entrez le premier nombre :"));
+        let b = parseFloat(prompt("Entrez le deuxième nombre :"));
+        let resultat = a - b;
+        document.getElementById("resultat").innerHTML = "Le résultat de la soustraction : " + a + " - " + b + " = " + resultat;
+      }
+
+      function afficherTableMultiplication() {
+        let nombre = parseInt(prompt("Entrez un nombre :"));
+        let tableMultiplication = "";
+        for (let i = 1; i <= 12; i++) {
+          tableMultiplication += nombre + " x " + i + " = " + (nombre * i) + "<br>";
+        }
+        document.getElementById("resultat").innerHTML = tableMultiplication;
+      }
+
+      function quitter() {
+        document.getElementById("menu").style.display = "none";
+        document.getElementById("confirmation-quitter").style.display = "block";
+      }
+
+      function annulerQuitter() {
+        document.getElementById("menu").style.display = "block";
+        document.getElementById("confirmation-quitter").style.display = "none";
+      }
+
+      function fermerFenetre() {
+        document.getElementById("confirmation-quitter").style.display = "none";
+        document.getElementById("au-revoir").style.display = "block";
+        window.close();
+      }
+
+    </script>
+  </body>
+</html>
